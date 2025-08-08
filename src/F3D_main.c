@@ -7,7 +7,7 @@ F3D_Engine engine;
 
 int main() {
     memset(&engine, 0, sizeof(engine));
-    if (F3D_init(engine) != 0) {
+    if (F3D_init(&engine) != 0) {
         fprintf(stderr, "Error during F3D engine initialization");
         return 1;
     }
