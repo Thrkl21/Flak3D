@@ -2,4 +2,4 @@
 
 #include <SDL.h>
 
-extern void doInput(void);
+extern int doInput(void);

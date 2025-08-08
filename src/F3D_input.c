@@ -2,17 +2,17 @@
 
 #include <SDL.h>
 
-void doInput(void) {
+int doInput(void) {
     SDL_Event event;
 
     while(SDL_PollEvent(&event)) {
         switch (event.type) {
             case SDL_QUIT:
-                exit(0);
-                break;
+                return 1; // Exit event
 
             default:
                 break;
         }
     }
+    return 0; // Nominal return
 }

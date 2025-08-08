@@ -6,34 +6,39 @@
 F3D_Engine engine;
 
 int main() {
-    memset(&engine, 0, sizeof(engine));
+    engine = (F3D_Engine) {0}; // Setting all engine pointers to null pointers
     if (F3D_init(&engine) != 0) {
         fprintf(stderr, "Error during F3D engine initialization");
-        return 1;
+        return -1;
     }
 
     int F3D_loop;
-    int prepareSceneResult;
+    int F3D_stop;
     F3D_loop = 0;
-    prepareSceneResult = 0;
+    F3D_stop = 0;
 
-    while(1){
-        prepareSceneResult = prepareScene(engine);
-        // TODO: DEBUG to remove
-        if (prepareSceneResult) {
+    while(!F3D_stop){
+        if (prepareScene(engine)) {
             const char* errorMsg;
             errorMsg = SDL_GetError();
             fprintf(stderr, "[ERROR] : SDL error : %s\n", errorMsg);
-            return 1;
+            return -1;
         }
-        doInput();
+        F3D_stop = doInput();
         presentScene(engine);
         SDL_Delay(16);
-        printf("Game loop #%d : prepareSceneResult = %d\n", F3D_loop, prepareSceneResult);
+        printf("Game loop #%d\n", F3D_loop);
         F3D_loop += 1;
     }
 
-    SDL_DestroyWindow(engine.window);
+    if (engine.renderer) {
+        SDL_DestroyRenderer(engine.renderer);
+        engine.renderer = NULL;
+    }
+    if (engine.window) {
+        SDL_DestroyWindow(engine.window);
+        engine.window = NULL;
+    }
     SDL_Quit();
     return 0;
 }
