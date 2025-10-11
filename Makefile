@@ -13,8 +13,8 @@ all: run
 run: build/main
 	./build/main
 
-build/main: src/F3D_main.c src/F3D_init.c src/F3D_input.c src/F3D_draw.c
-	$(CC) $(CFLAGS)  $(SDLFLAGS) -o build/main src/F3D_main.c src/F3D_init.c src/F3D_input.c src/F3D_draw.c
+build/main: src/F3D_main.c src/F3D_draw.c src/F3D_api.c
+	$(CC) $(CFLAGS)  $(SDLFLAGS) -o build/main src/F3D_main.c src/F3D_draw.c src/F3D_api.c
 
 clean:
 	rm -rf build/*
