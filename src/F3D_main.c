@@ -18,9 +18,9 @@ int main() {
 
     while(!F3D_stop){
         F3D_clearScene(engine);
-        F3D_stop = doInput();
+        F3D_stop = F3D_doInput();
         F3D_setDrawColor(engine, 255, 255, 255, 255);
-        //F3D_drawGrid(engine);
+        F3D_drawGrid(engine);
         F3D_drawTriangle(engine, 100, 100, 200, 200, 300, 300);
         F3D_displayScene(engine);
         F3D_Delay(16);

@@ -42,7 +42,7 @@ int F3D_drawLine(F3D_Engine engine, int x1, int y1, int x2, int y2) {
     return 0;
 }
 
-int doInput(void) {
+int F3D_doInput(void) {
     SDL_Event event;
 
     while(SDL_PollEvent(&event)) {
